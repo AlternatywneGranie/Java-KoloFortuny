@@ -1,0 +1,84 @@
+package KoloFortuny;
+import javax.swing.*;
+import java.io.File;
+import java.util.Scanner;
+import java.io.PrintWriter;
+import java.io.IOException;
+import java.lang.String;
+import java.util.NoSuchElementException;
+import java.io.FileNotFoundException;
+public class KoloFortuny {
+    public static void main(String []args) throws IOException {
+        System.out.println("=====Zaczynamy grę w Koło Fortuny!====="+"\nGrasz o losową kwotę<--"+"\n-->Odgadnięte wyrażenie dla ułatwienia możesz zatwierdzić dowolnym znakiem.");
+        String nieznaneHaslo = JOptionPane.showInputDialog("Podaj hasło do odgadnięcia: ");
+        Scanner scanner = new Scanner(nieznaneHaslo);
+        nieznaneHaslo=nieznaneHaslo.replace('A','a');
+        nieznaneHaslo=nieznaneHaslo.replace('Ą','ą');
+        nieznaneHaslo=nieznaneHaslo.replace('B','b');
+        nieznaneHaslo=nieznaneHaslo.replace('C','c');
+        nieznaneHaslo=nieznaneHaslo.replace('Ć','ć');
+        nieznaneHaslo=nieznaneHaslo.replace('D','d');
+        nieznaneHaslo=nieznaneHaslo.replace('E','e');
+        nieznaneHaslo=nieznaneHaslo.replace('Ę','ę');
+        nieznaneHaslo=nieznaneHaslo.replace('F','f');
+        nieznaneHaslo=nieznaneHaslo.replace('G','g');
+        nieznaneHaslo=nieznaneHaslo.replace('H','h');
+        nieznaneHaslo=nieznaneHaslo.replace('I','i');
+        nieznaneHaslo=nieznaneHaslo.replace('J','j');
+        nieznaneHaslo=nieznaneHaslo.replace('K','k');
+        nieznaneHaslo=nieznaneHaslo.replace('L','l');
+        nieznaneHaslo=nieznaneHaslo.replace('Ł','ł');
+        nieznaneHaslo=nieznaneHaslo.replace('M','m');
+        nieznaneHaslo=nieznaneHaslo.replace('N','n');
+        nieznaneHaslo=nieznaneHaslo.replace('Ń','n');
+        nieznaneHaslo=nieznaneHaslo.replace('O','o');
+        nieznaneHaslo=nieznaneHaslo.replace('Ó','ó');
+        nieznaneHaslo=nieznaneHaslo.replace('P','p');
+        nieznaneHaslo=nieznaneHaslo.replace('R','r');
+        nieznaneHaslo=nieznaneHaslo.replace('S','s');
+        nieznaneHaslo=nieznaneHaslo.replace('Ś','ś');
+        nieznaneHaslo=nieznaneHaslo.replace('T','t');
+        nieznaneHaslo=nieznaneHaslo.replace('U','u');
+        nieznaneHaslo=nieznaneHaslo.replace('W','w');
+        nieznaneHaslo=nieznaneHaslo.replace('Z','z');
+        nieznaneHaslo=nieznaneHaslo.replace('Ż','ż');
+        nieznaneHaslo=nieznaneHaslo.replace('Ź','ź');
+        nieznaneHaslo=nieznaneHaslo.replace('Y','y');
+        nieznaneHaslo=nieznaneHaslo.replace('V','v');
+        nieznaneHaslo=nieznaneHaslo.replace('X','x');
+        String haslo= " "; //odpowiedzi uczestników
+        int wygrane=0;
+        Scanner klawiatura= new Scanner (System.in);
+        boolean notDone= true;
+        while (notDone){
+            notDone=false;
+            for (char nieznanaLiteraCyfra : nieznaneHaslo.toCharArray())
+                if (haslo.indexOf(nieznanaLiteraCyfra) == -1) {
+                    System.out.print('*');
+                    notDone = true;
+                    wygrane-=1;
+                }
+                else{
+                    wygrane+=1;
+                    System.out.print(nieznanaLiteraCyfra);
+
+                }
+
+            System.out.print("\nWprowadź swoje hasło (litery/cyfry): ");
+            String litera = klawiatura.next();
+            haslo += litera;
+
+
+        }
+        String imie=JOptionPane.showInputDialog(("Podaj swoje imię: "));
+        Scanner skaner = new Scanner(imie);
+        System.out.println("Gratulacje "+ imie);
+        File plik=new File("wyniki1.txt");
+        PrintWriter wyniki=new PrintWriter(plik);
+        wyniki.println("Gracz1 "+imie +" wygrana kwota "+wygrane +" zł");
+        wyniki.close();
+
+    }
+
+
+}
